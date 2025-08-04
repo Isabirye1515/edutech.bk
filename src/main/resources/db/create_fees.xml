@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog 
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+<changeSet id="07-create-fee-student-table" author="elijah">
+    <createTable tableName="fees_student">
+        <column name="id" type="INT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="is_admitted" type="BOOLEAN"/>
+        <column name="student_name" type="VARCHAR(255)"/>
+        <column name="student_id" type="VARCHAR(100)"/>
+        <column name="fees" type="DOUBLE PRECISION"/>
+        <column name="period" type="VARCHAR(100)"/>
+    </createTable>
+</changeSet>
+
+<changeSet id="08-create-amount-paid-table" author="elijah">
+    <createTable tableName="amount_paid">
+        <column name="id" type="INT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="student_id" type="VARCHAR(100)"/>
+        <column name="amount" type="DOUBLE PRECISION"/>
+        <column name="paid_on" type="DATE"/>
+        <column name="receipt_on" type="DATE"/>
+        <column name="fees_student_id" type="INT"/>
+    </createTable>
+
+    <addForeignKeyConstraint
+        constraintName="fk_paidamount_fee_student"
+        baseTableName="amount_paid"
+        baseColumnNames="fees_student_id"
+        referencedTableName="fees_student"
+        referencedColumnNames="id"
+        onDelete="SET NULL"/>
+</changeSet>
+</databaseChangeLog>

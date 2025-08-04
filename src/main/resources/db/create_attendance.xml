@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog 
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="1-create-attendance-stream-table" author="yourname">
+        <createTable tableName="attendance_stream">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="classroom" type="VARCHAR(255)" />
+            <column name="stream_name" type="VARCHAR(255)" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2-create-attendance-student-table" author="yourname">
+        <createTable tableName="attendance_student">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="school_id" type="VARCHAR(255)" />
+            <column name="attendance_name" type="VARCHAR(255)" />
+            <column name="attendance_stream_id" type="INT">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addForeignKeyConstraint 
+            baseTableName="attendance_student"
+            baseColumnNames="attendance_stream_id"
+            constraintName="fk_attendance_student_stream"
+            referencedTableName="attendance_stream"
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="3-create-present-table" author="yourname">
+        <createTable tableName="present">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="day" type="DATE" />
+            <column name="is_present" type="BOOLEAN" />
+            <column name="attendance_student_id" type="INT">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addForeignKeyConstraint 
+            baseTableName="present"
+            baseColumnNames="attendance_student_id"
+            constraintName="fk_present_student"
+            referencedTableName="attendance_student"
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

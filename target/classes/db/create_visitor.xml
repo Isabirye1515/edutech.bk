@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+      http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <!-- Table: visit_type -->
+    <changeSet id="1-create-visit_type" author="elijah">
+        <createTable tableName="visit_type">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="reason" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Table: visit_target -->
+    <changeSet id="2-create-visit_target" author="elijah">
+        <createTable tableName="visit_target">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="names" type="VARCHAR(255)"/>
+            <column name="role" type="VARCHAR(255)"/>
+            <column name="position" type="VARCHAR(255)"/>
+            <column name="visit_type_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="visit_target"
+            baseColumnNames="visit_type_id"
+            constraintName="fk_visit_target_visit_type"
+            referencedTableName="visit_type"
+            referencedColumnNames="id"
+            onDelete="SET NULL"/>
+    </changeSet>
+
+    <!-- Table: visitor -->
+    <changeSet id="3-create-visitor" author="elijah">
+        <createTable tableName="visitor">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="middle_name" type="VARCHAR(255)"/>
+            <column name="contact_id" type="BIGINT"/>
+            <column name="address_id" type="BIGINT"/>
+            <column name="visit_type_id" type="BIGINT"/>
+            <column name="visit_date" type="DATE"/>
+            <column name="arrived_at" type="TIME"/>
+            <column name="departed_at" type="TIME"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="visitor"
+            baseColumnNames="contact_id"
+            constraintName="fk_visitor_contact"
+            referencedTableName="contact"
+            referencedColumnNames="id"
+            onDelete="SET NULL"/>
+
+        <addForeignKeyConstraint
+            baseTableName="visitor"
+            baseColumnNames="address_id"
+            constraintName="fk_visitor_address"
+            referencedTableName="address"
+            referencedColumnNames="id"
+            onDelete="SET NULL"/>
+
+        <addForeignKeyConstraint
+            baseTableName="visitor"
+            baseColumnNames="visit_type_id"
+            constraintName="fk_visitor_visit_type"
+            referencedTableName="visit_type"
+            referencedColumnNames="id"
+            onDelete="SET NULL"/>
+    </changeSet>
+
+</databaseChangeLog>

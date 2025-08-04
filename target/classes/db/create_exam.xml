@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+       http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Exam -->
+    <changeSet id="1" author="elijah">
+        <createTable tableName="exam">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="begin_on" type="DATE"/>
+            <column name="end_on" type="DATE"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Supervisor -->
+    <changeSet id="2" author="elijah">
+        <createTable tableName="supervisor">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="paper_name" type="VARCHAR(255)"/>
+            <column name="visor_name" type="VARCHAR(255)"/>
+            <column name="start_at" type="TIME"/>
+            <column name="end_at" type="TIME"/>
+            <column name="day" type="DATE"/>
+            <column name="exam_id" type="INT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="supervisor"
+            baseColumnNames="exam_id"
+            constraintName="fk_supervisor_exam"
+            referencedTableName="exam"
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+    </changeSet>
+
+    <!-- Ranges -->
+    <changeSet id="3" author="elijah">
+        <createTable tableName="ranges">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="from_value" type="DOUBLE"/>
+            <column name="to_value" type="DOUBLE"/>
+            <column name="credit" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Exam Student -->
+    <changeSet id="4" author="elijah">
+        <createTable tableName="exam_student">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="student_name" type="VARCHAR(255)"/>
+            <column name="stream_name" type="VARCHAR(255)"/>
+            <column name="exam_id" type="INT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="exam_student"
+            baseColumnNames="exam_id"
+            constraintName="fk_examstudent_exam"
+            referencedTableName="exam"
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+    </changeSet>
+
+    <!-- Paper -->
+    <changeSet id="5" author="elijah">
+        <createTable tableName="paper">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="abrev" type="VARCHAR(50)"/>
+            <column name="paper_name" type="VARCHAR(255)"/>
+            <column name="exam_student_id" type="INT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="paper"
+            baseColumnNames="exam_student_id"
+            constraintName="fk_paper_examstudent"
+            referencedTableName="exam_student"
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+    </changeSet>
+
+    <!-- Marks -->
+    <changeSet id="6" author="elijah">
+        <createTable tableName="marks">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="paper_name" type="VARCHAR(255)"/>
+            <column name="marked_by" type="VARCHAR(255)"/>
+            <column name="paper_code" type="VARCHAR(50)"/>
+            <column name="mark" type="DOUBLE"/>
+            <column name="grade" type="VARCHAR(20)"/>
+            <column name="remark" type="VARCHAR(255)"/>
+            <column name="paper_id" type="INT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="marks"
+            baseColumnNames="paper_id"
+            constraintName="fk_marks_paper"
+            referencedTableName="paper"
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+      http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Table: stream_table -->
+    <changeSet id="1" author="elijah">
+        <createTable tableName="stream_table">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="class_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stream_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Table: time_program -->
+    <changeSet id="2" author="elijah">
+        <createTable tableName="time_program">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="start_time" type="TIME"/>
+            <column name="end_time" type="TIME"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="event" type="VARCHAR(255)"/>
+            <column name="table_stream_id" type="INT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="time_program"
+            baseColumnNames="table_stream_id"
+            referencedTableName="stream_table"
+            referencedColumnNames="id"
+            constraintName="fk_time_program_stream"/>
+    </changeSet>
+
+    <!-- Table: day_time_table -->
+    <changeSet id="3" author="elijah">
+        <createTable tableName="day_time_table">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="day" type="VARCHAR(50)"/>
+            <column name="first_lesson_id" type="INT"/>
+            <column name="second_lesson_id" type="INT"/>
+            <column name="break_time_id" type="INT"/>
+            <column name="third_lesson_id" type="INT"/>
+            <column name="fourth_lesson_id" type="INT"/>
+            <column name="lunch_id" type="INT"/>
+            <column name="fifth_lesson_id" type="INT"/>
+            <column name="sixth_lesson_id" type="INT"/>
+            <column name="table_stream_id" type="INT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="day_time_table" baseColumnNames="first_lesson_id"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_day_first_lesson"/>
+        <addForeignKeyConstraint baseTableName="day_time_table" baseColumnNames="second_lesson_id"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_day_second_lesson"/>
+        <addForeignKeyConstraint baseTableName="day_time_table" baseColumnNames="break_time_id"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_day_break_time"/>
+        <addForeignKeyConstraint baseTableName="day_time_table" baseColumnNames="third_lesson_id"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_day_third_lesson"/>
+        <addForeignKeyConstraint baseTableName="day_time_table" baseColumnNames="fourth_lesson_id"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_day_fourth_lesson"/>
+        <addForeignKeyConstraint baseTableName="day_time_table" baseColumnNames="lunch_id"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_day_lunch"/>
+        <addForeignKeyConstraint baseTableName="day_time_table" baseColumnNames="fifth_lesson_id"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_day_fifth_lesson"/>
+        <addForeignKeyConstraint baseTableName="day_time_table" baseColumnNames="sixth_lesson_id"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_day_sixth_lesson"/>
+        <addForeignKeyConstraint baseTableName="day_time_table" baseColumnNames="table_stream_id"
+                                 referencedTableName="stream_table" referencedColumnNames="id"
+                                 constraintName="fk_day_table_stream"/>
+    </changeSet>
+
+    <!-- Table: prep_time_table -->
+    <changeSet id="4" author="elijah">
+        <createTable tableName="prep_time_table">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="day" type="VARCHAR(50)"/>
+            <column name="first_lesson" type="INT"/>
+            <column name="second_lesson" type="INT"/>
+            <column name="break_time" type="INT"/>
+            <column name="table_stream_id" type="INT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="prep_time_table" baseColumnNames="first_lesson"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_prep_first_lesson"/>
+        <addForeignKeyConstraint baseTableName="prep_time_table" baseColumnNames="second_lesson"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_prep_second_lesson"/>
+        <addForeignKeyConstraint baseTableName="prep_time_table" baseColumnNames="break_time"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_prep_break_time"/>
+        <addForeignKeyConstraint baseTableName="prep_time_table" baseColumnNames="table_stream_id"
+                                 referencedTableName="stream_table" referencedColumnNames="id"
+                                 constraintName="fk_prep_table_stream"/>
+    </changeSet>
+
+    <!-- Table: weekend -->
+    <changeSet id="5" author="elijah">
+        <createTable tableName="weekend">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="day" type="VARCHAR(50)"/>
+            <column name="first_lesson" type="INT"/>
+            <column name="second_lesson" type="INT"/>
+            <column name="break_time" type="INT"/>
+            <column name="third_lesson" type="INT"/>
+            <column name="fourth_lesson" type="INT"/>
+            <column name="lunch" type="INT"/>
+            <column name="fifth_lesson" type="INT"/>
+            <column name="sixth_lesson" type="INT"/>
+            <column name="table_stream_id" type="INT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="weekend" baseColumnNames="first_lesson"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_weekend_first_lesson"/>
+        <addForeignKeyConstraint baseTableName="weekend" baseColumnNames="second_lesson"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_weekend_second_lesson"/>
+        <addForeignKeyConstraint baseTableName="weekend" baseColumnNames="break_time"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_weekend_break_time"/>
+        <addForeignKeyConstraint baseTableName="weekend" baseColumnNames="third_lesson"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_weekend_third_lesson"/>
+        <addForeignKeyConstraint baseTableName="weekend" baseColumnNames="fourth_lesson"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_weekend_fourth_lesson"/>
+        <addForeignKeyConstraint baseTableName="weekend" baseColumnNames="lunch"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_weekend_lunch"/>
+        <addForeignKeyConstraint baseTableName="weekend" baseColumnNames="fifth_lesson"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_weekend_fifth_lesson"/>
+        <addForeignKeyConstraint baseTableName="weekend" baseColumnNames="sixth_lesson"
+                                 referencedTableName="time_program" referencedColumnNames="id"
+                                 constraintName="fk_weekend_sixth_lesson"/>
+        <addForeignKeyConstraint baseTableName="weekend" baseColumnNames="table_stream_id"
+                                 referencedTableName="stream_table" referencedColumnNames="id"
+                                 constraintName="fk_weekend_table_stream"/>
+    </changeSet>
+
+</databaseChangeLog>
