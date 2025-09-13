@@ -1,81 +1,76 @@
 package org.edutech.exams.valueholders;
 
-
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 @Entity
 @Table(name = "exam_student")
 public class ExamStudent {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "student_name")
-    private String studentName;
-    
-    @ManyToOne
-    @JoinColumn(name = "exam_id")
-    private Exam exam;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    @Column(name = "stream_name")
-    private String streamName;
-    @OneToMany(mappedBy = "examStudent", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Paper> papers;
+  @Column(name = "student_name")
+  private String studentName;
 
-    public ExamStudent(){}
+  @ManyToOne
+  @JoinColumn(name = "exam_id")
+  private Exam exam;
 
-    public int getId() {
-        return id;
-    }
+  @Column(name = "stream_name")
+  private String streamName;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  @OneToMany(mappedBy = "examStudent", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<Paper> papers;
 
-    public String getStudentName() {
-        return studentName;
-    }
+  public ExamStudent() {}
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public String getStreamName() {
-        return streamName;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setStreamName(String streamName) {
-        this.streamName = streamName;
-    }
+  public String getStudentName() {
+    return studentName;
+  }
 
-    
+  public void setStudentName(String studentName) {
+    this.studentName = studentName;
+  }
 
-    public Exam getExam() {
-        return exam;
-    }
+  public String getStreamName() {
+    return streamName;
+  }
 
-    public void setExam(Exam exam) {
-        this.exam = exam;
-    }
+  public void setStreamName(String streamName) {
+    this.streamName = streamName;
+  }
 
-    public Set<Paper> getPapers() {
-        return papers;
-    }
+  public Exam getExam() {
+    return exam;
+  }
 
-    public void setPapers(Set<Paper> papers) {
-        this.papers = papers;
-    }
-    
+  public void setExam(Exam exam) {
+    this.exam = exam;
+  }
 
-    
-    
+  public Set<Paper> getPapers() {
+    return papers;
+  }
+
+  public void setPapers(Set<Paper> papers) {
+    this.papers = papers;
+  }
 }

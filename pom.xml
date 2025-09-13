@@ -28,13 +28,6 @@
   </dependency>
 
 
-  <dependency>
-    <groupId>javax.validation</groupId>
-    <artifactId>validation-api</artifactId>
-    <version>2.0.1.Final</version>
-  </dependency>
-
-    <!-- Spring Dependencies -->
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-tx</artifactId>
@@ -80,30 +73,19 @@
         <artifactId>hibernate-core</artifactId>
         <version>5.4.32.Final</version>
     </dependency>
-    <dependency>
-        <groupId>javax.persistence</groupId>
-        <artifactId>javax.persistence-api</artifactId>
-        <version>2.2</version>
-    </dependency>
+
     <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-dbcp2</artifactId>
         <version>2.9.0</version>
     </dependency>
-    <!-- Multipart File Upload -->
+    
     <dependency>
         <groupId>commons-fileupload</groupId>
         <artifactId>commons-fileupload</artifactId>
         <version>1.5</version>
     </dependency>
-    <!-- Servlet API for WAR -->
-    <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>3.1.0</version>
-        <scope>provided</scope>
-    </dependency>
-    <!-- Liquibase (optional, keep if used) -->
+
     <dependency>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-core</artifactId>
@@ -141,6 +123,33 @@
     <version>3.0.1-b12</version>
 </dependency>
 
+<dependency>
+    <groupId>jakarta.servlet</groupId>
+    <artifactId>jakarta.servlet-api</artifactId>
+    <version>6.1.0</version>
+    <scope>provided</scope>
+</dependency>
+
+<dependency>
+    <groupId>jakarta.persistence</groupId>
+    <artifactId>jakarta.persistence-api</artifactId>
+    <version>3.1.0</version>
+</dependency>
+
+<dependency>
+    <groupId>jakarta.transaction</groupId>
+    <artifactId>jakarta.transaction-api</artifactId>
+    <version>2.0.1</version>
+</dependency>
+
+
+<dependency>
+    <groupId>jakarta.validation</groupId>
+    <artifactId>jakarta.validation-api</artifactId>
+    <version>3.1.1</version>
+</dependency>
+
+
 </dependencies>
 
   <build>
@@ -168,6 +177,30 @@
           <artifactId>maven-war-plugin</artifactId>
           <version>3.2.2</version>
         </plugin>
+    
+          <plugin>
+            <groupId>com.diffplug.spotless</groupId>
+            <artifactId>spotless-maven-plugin</artifactId>
+            <version>2.43.0</version> <!-- Latest stable version -->
+            <configuration>
+              <java>
+                <!-- Use Google Java Format -->
+                <googleJavaFormat>
+                  <version>1.17.0</version>
+                </googleJavaFormat>
+              </java>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <!-- Formats code automatically when you run mvn spotless:apply -->
+                  <goal>apply</goal>
+                  <!-- Checks code style during build (optional) -->
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>2.5.2</version>

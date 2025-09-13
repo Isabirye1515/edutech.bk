@@ -1,52 +1,49 @@
 package org.edutech.Student.valueholder;
 
-import javax.persistence.*;
-
+import jakarta.persistence.*;
 import org.edutech.dormitory.valueholders.Bed;
 
 @Entity
 @Table(name = "bording_student")
 public class BordingStudent {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    @OneToOne
-    @JoinColumn(name = "student_id", nullable = false)
-    private Student student;
+  @OneToOne
+  @JoinColumn(name = "student_id", nullable = false)
+  private Student student;
 
-    @OneToOne
-    @JoinColumn(name = "bed_id", nullable = false)
-    private Bed bed;
+  @OneToOne
+  @JoinColumn(name = "bed_id", nullable = false)
+  private Bed bed;
 
-    public BordingStudent() {}
+  public BordingStudent() {}
 
-    // Getters and Setters
+  // Getters and Setters
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    
+  public Student getStudent() {
+    return student;
+  }
 
-    public Student getStudent() {
-        return student;
-    }
+  public void setStudent(Student student) {
+    this.student = student;
+  }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
+  public Bed getBed() {
+    return bed;
+  }
 
-    public Bed getBed() {
-        return bed;
-    }
+  public void setBed(Bed bed) {
+    this.bed = bed;
+  }
 
-    public void setBed(Bed bed) {
-        this.bed = bed;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 }

@@ -3,32 +3,31 @@ package org.edutech.Student.valueholder.dtos;
 import org.edutech.dormitory.valueholders.dto.BedDTO;
 
 public class BordingStudentDTO {
-    private int id;
-    private StudentDTO student;
-    private BedDTO bed;
+  private int id;
+  private StudentDTO student;
+  private BedDTO bed;
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public StudentDTO getStudent() {
-        return student;
-    }
+  public StudentDTO getStudent() {
+    return student;
+  }
 
-    public void setStudent(StudentDTO student) {
-        this.student = student;
-    }
+  public void setStudent(StudentDTO student) {
+    this.student = student;
+  }
 
-    public BedDTO getBed() {
-        return bed;
-    }
+  public BedDTO getBed() {
+    return bed;
+  }
 
-    public void setBed(BedDTO bed) {
-        this.bed = bed;
-    }
+  public void setBed(BedDTO bed) {
+    this.bed = bed;
+  }
 }
-

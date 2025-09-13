@@ -1,68 +1,70 @@
 package org.edutech.subject.valueholder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 @Entity
 @Table(name = "subject_paper")
 public class SubjectPaper {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "paper_name")
-    private String paperName;
-    @Column(name = "paper_code")
-    private String paperCode;
-    @Column(name = "is_option")
-    private boolean isOption;
-    @Column(name = "has_teacher")
-    private boolean hasTeacher;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    public SubjectPaper(){}
+  @Column(name = "paper_name")
+  private String paperName;
 
-    public int getId() {
-        return id;
-    }
+  @Column(name = "paper_code")
+  private String paperCode;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  @Column(name = "is_option")
+  private boolean isOption;
 
-    public String getPaperName() {
-        return paperName;
-    }
+  @Column(name = "has_teacher")
+  private boolean hasTeacher;
 
-    public void setPaperName(String paperName) {
-        this.paperName = paperName;
-    }
+  public SubjectPaper() {}
 
-    public String getPaperCode() {
-        return paperCode;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setPaperCode(String paperCode) {
-        this.paperCode = paperCode;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public boolean isOption() {
-        return isOption;
-    }
+  public String getPaperName() {
+    return paperName;
+  }
 
-    public void setOption(boolean isOption) {
-        this.isOption = isOption;
-    }
+  public void setPaperName(String paperName) {
+    this.paperName = paperName;
+  }
 
-    public boolean isHasTeacher() {
-        return hasTeacher;
-    }
+  public String getPaperCode() {
+    return paperCode;
+  }
 
-    public void setHasTeacher(boolean hasTeacher) {
-        this.hasTeacher = hasTeacher;
-    }
+  public void setPaperCode(String paperCode) {
+    this.paperCode = paperCode;
+  }
 
-    
-    
+  public boolean isOption() {
+    return isOption;
+  }
+
+  public void setOption(boolean isOption) {
+    this.isOption = isOption;
+  }
+
+  public boolean isHasTeacher() {
+    return hasTeacher;
+  }
+
+  public void setHasTeacher(boolean hasTeacher) {
+    this.hasTeacher = hasTeacher;
+  }
 }

@@ -1,81 +1,81 @@
 package org.edutech.address.valuehoders;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 @Entity
 @Table(name = "address")
 public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "county")
-    private String county;
-    @Column(name = "parish")
-    private String parish;
-    @Column(name = "country")
-    private String country;
-    @Column(name = "subcounty")
-    private String subcounty;
-    @Column(name = "village")
-    private String village;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    public Address(){}
-    
+  @Column(name = "county")
+  private String county;
 
-    public String getCounty() {
-        return county;
-    }
+  @Column(name = "parish")
+  private String parish;
 
-    public void setCounty(String county) {
-        this.county = county;
-    }
+  @Column(name = "country")
+  private String country;
 
-    public String getParish() {
-        return parish;
-    }
+  @Column(name = "subcounty")
+  private String subcounty;
 
-    public void setParish(String parish) {
-        this.parish = parish;
-    }
+  @Column(name = "village")
+  private String village;
 
-    public String getCountry() {
-        return country;
-    }
+  public Address() {}
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+  public String getCounty() {
+    return county;
+  }
 
-    public String getSubcounty() {
-        return subcounty;
-    }
+  public void setCounty(String county) {
+    this.county = county;
+  }
 
-    public void setSubcounty(String subcounty) {
-        this.subcounty = subcounty;
-    }
+  public String getParish() {
+    return parish;
+  }
 
-    public String getVillage() {
-        return village;
-    }
+  public void setParish(String parish) {
+    this.parish = parish;
+  }
 
-    public void setVillage(String village) {
-        this.village = village;
-    }
+  public String getCountry() {
+    return country;
+  }
 
+  public void setCountry(String country) {
+    this.country = country;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public String getSubcounty() {
+    return subcounty;
+  }
 
+  public void setSubcounty(String subcounty) {
+    this.subcounty = subcounty;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public String getVillage() {
+    return village;
+  }
 
-    
-    
+  public void setVillage(String village) {
+    this.village = village;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
 }
