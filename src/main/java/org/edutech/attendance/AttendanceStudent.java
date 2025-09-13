@@ -1,76 +1,76 @@
 package org.edutech.attendance;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 @Entity
 @Table(name = "attendance")
 public class AttendanceStudent {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "school_id")
-    private String schoolId;
-    @Column(name = "attendance_name")
-    private String attendanceName;
-    @ManyToOne
-    @JoinColumn(name = "attendance_stream_id")
-    private AttendanceStream attendanceStream;
-    @OneToMany(mappedBy = "attendanceStudent", orphanRemoval = true, cascade = CascadeType.ALL)
-    private List<Present> presents;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    public AttendanceStudent(){}
+  @Column(name = "school_id")
+  private String schoolId;
 
-    public int getId() {
-        return id;
-    }
+  @Column(name = "attendance_name")
+  private String attendanceName;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  @ManyToOne
+  @JoinColumn(name = "attendance_stream_id")
+  private AttendanceStream attendanceStream;
 
-    public String getSchoolId() {
-        return schoolId;
-    }
+  @OneToMany(mappedBy = "attendanceStudent", orphanRemoval = true, cascade = CascadeType.ALL)
+  private List<Present> presents;
 
-    public void setSchoolId(String schoolId) {
-        this.schoolId = schoolId;
-    }
+  public AttendanceStudent() {}
 
-    public String getAttendanceName() {
-        return attendanceName;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setAttendanceName(String attendanceName) {
-        this.attendanceName = attendanceName;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public List<Present> getPresents() {
-        return presents;
-    }
+  public String getSchoolId() {
+    return schoolId;
+  }
 
-    public void setPresents(List<Present> presents) {
-        this.presents = presents;
-    }
+  public void setSchoolId(String schoolId) {
+    this.schoolId = schoolId;
+  }
 
-    public AttendanceStream getAttendanceStream() {
-        return attendanceStream;
-    }
+  public String getAttendanceName() {
+    return attendanceName;
+  }
 
-    public void setAttendanceStream(AttendanceStream attendanceStream) {
-        this.attendanceStream = attendanceStream;
-    }
+  public void setAttendanceName(String attendanceName) {
+    this.attendanceName = attendanceName;
+  }
 
-    
-    
-    
+  public List<Present> getPresents() {
+    return presents;
+  }
+
+  public void setPresents(List<Present> presents) {
+    this.presents = presents;
+  }
+
+  public AttendanceStream getAttendanceStream() {
+    return attendanceStream;
+  }
+
+  public void setAttendanceStream(AttendanceStream attendanceStream) {
+    this.attendanceStream = attendanceStream;
+  }
 }

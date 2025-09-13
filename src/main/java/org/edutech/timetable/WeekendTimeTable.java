@@ -1,152 +1,148 @@
 package org.edutech.timetable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "weekend")
 public class WeekendTimeTable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "day")
-    private String day;
-    @OneToOne
-    @JoinColumn(name = "first_lesson")
-    private TimeProgram firstLesson;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    @OneToOne
-    @JoinColumn(name = "second_lesson")
-    private TimeProgram secondLesson;
+  @Column(name = "day")
+  private String day;
 
-    @OneToOne
-    @JoinColumn(name = "break_time")
-    private TimeProgram breakTime;
+  @OneToOne
+  @JoinColumn(name = "first_lesson")
+  private TimeProgram firstLesson;
 
-    @OneToOne
-    @JoinColumn(name = "third_lesson")
-    private TimeProgram thirdLesson;
+  @OneToOne
+  @JoinColumn(name = "second_lesson")
+  private TimeProgram secondLesson;
 
-    @OneToOne
-    @JoinColumn(name = "fourth_lesson")
-    private TimeProgram fourthLesson;
+  @OneToOne
+  @JoinColumn(name = "break_time")
+  private TimeProgram breakTime;
 
-    @OneToOne
-    @JoinColumn(name = "lunch")
-    private TimeProgram lunch;
+  @OneToOne
+  @JoinColumn(name = "third_lesson")
+  private TimeProgram thirdLesson;
 
-    @OneToOne
-    @JoinColumn(name = "fifth_lesson")
-    private TimeProgram fifthLesson;
+  @OneToOne
+  @JoinColumn(name = "fourth_lesson")
+  private TimeProgram fourthLesson;
 
-    @OneToOne
-    @JoinColumn(name = "sixth_lesson")
-    private TimeProgram sixthLesson;
+  @OneToOne
+  @JoinColumn(name = "lunch")
+  private TimeProgram lunch;
 
-    @ManyToOne
-    @JoinColumn(name = "table_stream_id")
-    private TableStream tableStream;
+  @OneToOne
+  @JoinColumn(name = "fifth_lesson")
+  private TimeProgram fifthLesson;
 
-    public WeekendTimeTable(){}
+  @OneToOne
+  @JoinColumn(name = "sixth_lesson")
+  private TimeProgram sixthLesson;
 
-    public TimeProgram getFirstLesson() {
-        return firstLesson;
-    }
+  @ManyToOne
+  @JoinColumn(name = "table_stream_id")
+  private TableStream tableStream;
 
-    public void setFirstLesson(TimeProgram firstLesson) {
-        this.firstLesson = firstLesson;
-    }
+  public WeekendTimeTable() {}
 
-    public TimeProgram getSecondLesson() {
-        return secondLesson;
-    }
+  public TimeProgram getFirstLesson() {
+    return firstLesson;
+  }
 
-    public void setSecondLesson(TimeProgram secondLesson) {
-        this.secondLesson = secondLesson;
-    }
+  public void setFirstLesson(TimeProgram firstLesson) {
+    this.firstLesson = firstLesson;
+  }
 
-    public TimeProgram getBreakTime() {
-        return breakTime;
-    }
+  public TimeProgram getSecondLesson() {
+    return secondLesson;
+  }
 
-    public void setBreakTime(TimeProgram breakTime) {
-        this.breakTime = breakTime;
-    }
+  public void setSecondLesson(TimeProgram secondLesson) {
+    this.secondLesson = secondLesson;
+  }
 
-    public TimeProgram getThirdLesson() {
-        return thirdLesson;
-    }
+  public TimeProgram getBreakTime() {
+    return breakTime;
+  }
 
-    public void setThirdLesson(TimeProgram thirdLesson) {
-        this.thirdLesson = thirdLesson;
-    }
+  public void setBreakTime(TimeProgram breakTime) {
+    this.breakTime = breakTime;
+  }
 
-    public TimeProgram getFourthLesson() {
-        return fourthLesson;
-    }
+  public TimeProgram getThirdLesson() {
+    return thirdLesson;
+  }
 
-    public void setFourthLesson(TimeProgram fourthLesson) {
-        this.fourthLesson = fourthLesson;
-    }
+  public void setThirdLesson(TimeProgram thirdLesson) {
+    this.thirdLesson = thirdLesson;
+  }
 
-    public TimeProgram getLunch() {
-        return lunch;
-    }
+  public TimeProgram getFourthLesson() {
+    return fourthLesson;
+  }
 
-    public void setLunch(TimeProgram lunch) {
-        this.lunch = lunch;
-    }
+  public void setFourthLesson(TimeProgram fourthLesson) {
+    this.fourthLesson = fourthLesson;
+  }
 
-    public TimeProgram getFifthLesson() {
-        return fifthLesson;
-    }
+  public TimeProgram getLunch() {
+    return lunch;
+  }
 
-    public void setFifthLesson(TimeProgram fifthLesson) {
-        this.fifthLesson = fifthLesson;
-    }
+  public void setLunch(TimeProgram lunch) {
+    this.lunch = lunch;
+  }
 
-    public TimeProgram getSixthLesson() {
-        return sixthLesson;
-    }
+  public TimeProgram getFifthLesson() {
+    return fifthLesson;
+  }
 
-    public void setSixthLesson(TimeProgram sixthLesson) {
-        this.sixthLesson = sixthLesson;
-    }
+  public void setFifthLesson(TimeProgram fifthLesson) {
+    this.fifthLesson = fifthLesson;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public TimeProgram getSixthLesson() {
+    return sixthLesson;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setSixthLesson(TimeProgram sixthLesson) {
+    this.sixthLesson = sixthLesson;
+  }
 
-    public String getDay() {
-        return day;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setDay(String day) {
-        this.day = day;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public TableStream getTableStream() {
-        return tableStream;
-    }
+  public String getDay() {
+    return day;
+  }
 
-    public void setTableStream(TableStream tableStream) {
-        this.tableStream = tableStream;
-    }
+  public void setDay(String day) {
+    this.day = day;
+  }
 
-    
+  public TableStream getTableStream() {
+    return tableStream;
+  }
 
-    
-
-    
+  public void setTableStream(TableStream tableStream) {
+    this.tableStream = tableStream;
+  }
 }
