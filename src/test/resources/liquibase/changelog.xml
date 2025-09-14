@@ -1,0 +1,22 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog 
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <include file="src/test/reasources/liquibase/create_address.xml"/>
+    <include file="src/test/resources/liquibase/create_class_rooms.xml"/>
+    <include file="src/test/resources/liquibase/create_stream.xml"/>
+    <include file="src/test/resources/liquibase/bed_location.xml"/>
+    <include file="src/test/resources/liquibase/create_bed.xml"/>
+    <include file="src/test/resources/liquibase/create_student.xml"/>
+    <include file="src/test/resources/liquibase/create_timetable.xml"/>
+    <include file="src/test/resources/liquibase/subject_teacher.xml"/>
+    <include file="src/test/resources/liquibase/create_exam.xml"/>
+    <include file="src/test/resources/liquibase/create_visitor.xml"/>
+    <include file="src/test/resources/liquibase/create_fees.xml"/>
+    <include file="src/test/resources/liquibase/create_admin.xml"/>
+
+    
+</databaseChangeLog>
