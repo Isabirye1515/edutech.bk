@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <admin id="1" first_name="Alice" last_name="Smith" password="hashedPassword123" user_name="alice.smith"/>
+    <admin id="2" first_name="Bob" last_name="Johnson" password="hashedPassword456" user_name="bob.johnson"/>
+</dataset>

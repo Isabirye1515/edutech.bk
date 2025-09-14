@@ -1,0 +1,86 @@
+<databaseChangeLog 
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- 1. Create teacher table -->
+    <changeSet id="1-create-teacher" author="elijah">
+        <createTable tableName="teacher">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uuid" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(100)"/>
+            <column name="last_name" type="VARCHAR(100)"/>
+            <column name="middle_name" type="VARCHAR(100)"/>
+            <column name="dob" type="DATE"/>
+            <column name="image_url" type="VARCHAR(255)"/>
+            <column name="contact_id" type="INT"/>
+            <column name="address_id" type="INT"/>
+        </createTable>
+
+        <!-- FK: teacher.contact_id → contact.id -->
+        <addForeignKeyConstraint 
+            baseTableName="teacher" 
+            baseColumnNames="contact_id"
+            referencedTableName="contact" 
+            referencedColumnNames="id"
+            constraintName="fk_teacher_contact"/>
+
+        <!-- FK: teacher.address_id → address.id -->
+        <addForeignKeyConstraint 
+            baseTableName="teacher" 
+            baseColumnNames="address_id"
+            referencedTableName="address" 
+            referencedColumnNames="id"
+            constraintName="fk_teacher_address"/>
+    </changeSet>
+
+    <!-- 2. Create subject table -->
+    <changeSet id="2-create-subject" author="elijah">
+        <createTable tableName="subject">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uuid" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="subject_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="teacher_id" type="INT"/>
+        </createTable>
+
+        <!-- FK: subject.teacher_id → teacher.id -->
+        <addForeignKeyConstraint 
+            baseTableName="subject"
+            baseColumnNames="teacher_id"
+            referencedTableName="teacher"
+            referencedColumnNames="id"
+            constraintName="fk_subject_teacher"/>
+    </changeSet>
+        <changeSet id="create-subject-paper-table" author="elijah">
+        <createTable tableName="subject_paper">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="paper_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="paper_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_option" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="has_teacher" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

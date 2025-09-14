@@ -1,17 +1,20 @@
 package org.edutech.admin;
 
+
+import java.util.List;
+import org.springframework.stereotype.Repository;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
-import java.util.List;
-import org.springframework.stereotype.Repository;
 
 @Repository
 public class AdminDao {
 
-  @PersistenceContext private EntityManager entityManager;
+  @PersistenceContext 
+  private EntityManager entityManager;
 
   @Transactional
   public void createAdmin(Admin admin) {
